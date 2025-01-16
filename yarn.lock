@@ -12110,6 +12110,10 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
+"sa-conductor@https://github.com/tsammeow/sa-conductor.git#0.0.1":
+  version "0.0.1"
+  resolved "https://github.com/tsammeow/sa-conductor.git#6920f58a978fec94b23a46882595a161ee3fd2ea"
+
 safe-array-concat@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/safe-array-concat/-/safe-array-concat-1.1.2.tgz#81d77ee0c4e8b863635227c721278dd524c20edb"
