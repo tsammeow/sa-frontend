@@ -12110,9 +12110,9 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-"sa-conductor@https://github.com/tsammeow/sa-conductor.git#0.0.1":
-  version "0.0.1"
-  resolved "https://github.com/tsammeow/sa-conductor.git#6920f58a978fec94b23a46882595a161ee3fd2ea"
+"sa-conductor@https://github.com/tsammeow/sa-conductor.git#0.0.2":
+  version "0.0.2"
+  resolved "https://github.com/tsammeow/sa-conductor.git#fcbfe6b53d3f0c02a0fff786e4fe367ca166788b"
 
 "sa-languages@https://github.com/tsammeow/sa-languages.git":
   version "0.0.1"
