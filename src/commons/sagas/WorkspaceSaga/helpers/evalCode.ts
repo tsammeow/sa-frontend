@@ -29,6 +29,7 @@ import {
 } from '../../../workspace/WorkspaceTypes';
 import { dumpDisplayBuffer } from './dumpDisplayBuffer';
 import { updateInspector } from './updateInspector';
+import { getFeatureConductor } from 'src/features/conductor/featureConductor';
 
 export function* evalCodeSaga(
   files: Record<string, string>,
@@ -39,6 +40,7 @@ export function* evalCodeSaga(
   actionType: string,
   storyEnv?: string
 ): SagaIterator {
+  if (getFeatureConductor()) return yield call(evalCodeConductorSaga, files, entrypointFilePath, context, execTime, workspaceLocation, actionType, storyEnv);
   context.runtime.debuggerOn =
     (actionType === WorkspaceActions.evalEditor.type ||
       actionType === InterpreterActions.debuggerResume.type) &&
@@ -459,6 +461,17 @@ export function* evalCodeSaga(
     const introIcon = document.getElementById(SideContentType.introduction + '-icon');
     introIcon?.classList.remove('side-content-tab-alert-error');
   }
+}
+
+export function* evalCodeConductorSaga(
+  files: Record<string, string>,
+  entrypointFilePath: string,
+  context: Context,
+  execTime: number,
+  workspaceLocation: WorkspaceLocation,
+  actionType: string,
+  storyEnv?: string
+): SagaIterator {
 }
 
 // Special module errors
