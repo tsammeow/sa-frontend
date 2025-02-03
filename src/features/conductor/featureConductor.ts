@@ -1,8 +1,3 @@
-import { createFeatureFlag } from "src/commons/featureFlags/createFeatureFlag";
+import { FeatureFlag } from "src/commons/featureFlags/FeatureFlag";
 
-export const [
-    featureConductor,
-    useFeatureConductor,
-    setFeatureConductor,
-    resetFeatureConductor,
-    getFeatureConductor] = createFeatureFlag("conductor.enable", false);
+export const featureConductor: FeatureFlag<boolean> = ["conductor.enable", true] as const;

@@ -29,7 +29,8 @@ import {
 } from '../../../workspace/WorkspaceTypes';
 import { dumpDisplayBuffer } from './dumpDisplayBuffer';
 import { updateInspector } from './updateInspector';
-import { getFeatureConductor } from 'src/features/conductor/featureConductor';
+import { featureConductor } from 'src/features/conductor/featureConductor';
+import { selectFeature } from 'src/commons/featureFlags/selectFeature';
 
 export function* evalCodeSaga(
   files: Record<string, string>,
@@ -40,7 +41,9 @@ export function* evalCodeSaga(
   actionType: string,
   storyEnv?: string
 ): SagaIterator {
-  if (getFeatureConductor()) return yield call(evalCodeConductorSaga, files, entrypointFilePath, context, execTime, workspaceLocation, actionType, storyEnv);
+  if (yield call(selectFeature, featureConductor)) {
+    return yield call(evalCodeConductorSaga, files, entrypointFilePath, context, execTime, workspaceLocation, actionType, storyEnv);
+  }
   context.runtime.debuggerOn =
     (actionType === WorkspaceActions.evalEditor.type ||
       actionType === InterpreterActions.debuggerResume.type) &&
