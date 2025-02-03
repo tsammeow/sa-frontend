@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FeatureFlag } from "./FeatureFlag";
 
 export type FeatureFlagsState = {
-    modifiedFlags: { [property: string]: any }
+    modifiedFlags: Record<string, any>
 };
 
 export const defaultFeatureFlags = {
@@ -12,11 +13,11 @@ const featureFlagsSlice = createSlice({
     name: "featureFlags",
     initialState: defaultFeatureFlags,
     reducers: {
-        setFlag(state: FeatureFlagsState, action: { payload: { featureFlag: string, value: any } }) {
-            state.modifiedFlags[action.payload.featureFlag] = action.payload.value;
+        setFlag<T>(state: FeatureFlagsState, action: { payload: { featureFlag: FeatureFlag<T>, value: T } }) {
+            state.modifiedFlags[action.payload.featureFlag[0]] = action.payload.value;
         },
-        resetFlag(state: FeatureFlagsState, action: { payload: { featureFlag: string } }) {
-            state.modifiedFlags[action.payload.featureFlag];
+        resetFlag<T>(state: FeatureFlagsState, action: { payload: { featureFlag: FeatureFlag<T> } }) {
+            state.modifiedFlags[action.payload.featureFlag[0]];
         }
     }
 });
